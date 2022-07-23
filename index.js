@@ -27,6 +27,11 @@ async function run() {
       const result = await projectCollection.find({}).toArray();
       res.send(result);
     });
+    app.post("/project", async (req, res) => {
+      const project = req.body;
+      const result = await projectCollection.insertOne(project);
+      res.send(result);
+    });
     app.get("/project/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -36,6 +41,11 @@ async function run() {
 
     app.get("/blog", async (req, res) => {
       const result = await blogCollection.find({}).toArray();
+      res.send(result);
+    });
+    app.post("/blog", async (req, res) => {
+      const blog = req.body;
+      const result = await blogCollection.insertOne(blog);
       res.send(result);
     });
     app.get("/blog/:id", async (req, res) => {
